@@ -5,7 +5,9 @@
 > O presente repositório visa documentar e explorar a capacidade de utilizar scripts em R para a análise de experimentos agrícolas.
 >
 > Disciplina: LCE5703-Estatística Experimental
+> 
 > Universidade: Esalq-USP
+> 
 > Nível de ensino: Pós-graduação
 
 ---
