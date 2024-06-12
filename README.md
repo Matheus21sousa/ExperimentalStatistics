@@ -28,6 +28,15 @@ Todos os pacotes podem ser instalados da maneira que for mais conveniente. Méto
 |**here**         | Pacote utilizado para o gerenciamento de caminhos de arquivos e diretórios 
 
 ---
+
+### ANÁLISE EXPLORATÓRIA
+### ANÁLISE DE PRESSUPOSIÇÕES
+### DIC
+### DBC
+### TESTE TUKEY 
+### REGRESSÃO
+
+---
 ### Author
 
 > Matheus Martins de Sousa
