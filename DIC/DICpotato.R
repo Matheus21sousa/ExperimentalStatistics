@@ -1,10 +1,10 @@
-## AULA 03 - Delineamentos Inteiramente Casualizados
+## AULA 03 a 07 - Delineamentos Inteiramente Casualizados
 
-## ---- 
+## ----
 # Exemplo:
-#   Título: Mutagênese em alho com radiação gama
-#   Fontes de variação: Dose da radiação (Gy)
-#   Variável resposta: Altura de plantas
+#   Título: Capacidade de multiplicação de genótipos de batata
+#   Fontes de variação: Acessos de Solanum tuberosum
+#   Variável resposta: Número de tubérculos
 
 ## ----
 ## PACOTES UTILIZADOS
@@ -22,7 +22,7 @@ set.seed(2001)
 
 # Genótipos e repetições
 genotype <- c("Asterix", "Familia01", "Familia02", "Familia03", "Familia04", "Familia05")
-repetition <- rep(1:8, each = length(genotype))
+repetition <- rep(1:8, each = 1)
 
 # Dataframe para armazenar os dados de genotipo e repetição
 df1 <- data.frame(
@@ -62,6 +62,7 @@ write.csv(DICpotato, file = "DIC-potato.csv")
 ## CROQUI
 
 # Aleatorização das parcelas experimentais
+set.seed(2001)
 SampleDICp <- DICpotato[sample(nrow(DICpotato)), ]
 
 # Cria um dataframe com linhas (n = x) e (n = y) colunas associarmos ao DICgarlic
