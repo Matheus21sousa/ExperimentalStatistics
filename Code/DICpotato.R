@@ -1,4 +1,4 @@
-## AULA 03 a 07 - Delineamentos Inteiramente Casualizados
+## AULA 03 e 05 - Delineamentos Inteiramente Casualizados
 
 ## ----
 # Exemplo:

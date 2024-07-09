@@ -1,4 +1,4 @@
-## AULA 03 - Delineamentos Inteiramente Casualizados
+## AULA 03 e 06 - DIC e Regressão Polinomial 
 
 ## ---- 
 # Exemplo:
@@ -16,13 +16,10 @@ library(ExpDes.pt)
 library(lawstat)
 
 ## ----
-# Definição de caminhos utilizando o pacote "here"
-dirRaw <- here("RawData")
-dirProcessed <- here("DIC")
+## ENTRADA DE DADOS, ALEATORIZAÇÃO DAS PARCELAS E CROQUI
 
-# Lê o arquivo em formato Excel
-pathRaw <- file.path(dirRaw, "DIC-garlic.xlsx")
-DICgarlic <- read_excel(pathRaw)
+# Entrada de dados
+DICgarlic <- read_excel("DIC-garlic.xlsx", col_names = T)
 
 # Seed para aleatorizações (n° USP)
 set.seed(15380462)
@@ -39,11 +36,15 @@ SampleDIC <- cbind(SampleDIC, Arranjo)
 # Transforma a dose em um fator 
 SampleDIC$DOSE <- as.factor(SampleDIC$DOSE)
 
+# Paleta do RColorBrewer
+paleta <- brewer.pal(7, "Reds")
+display.brewer.all()
+
 # Plota o croqui da área
 croquiDIC <- ggplot(SampleDIC, aes(x = LINHA, y = COLUNA, fill = DOSE)) +
   geom_tile(color = "white", lwd = 1) +
   geom_text(aes(label = REPETIÇÃO), color = "white", size = 4) +
-  scale_color_continuous() +  # Usar uma escala contínua
+  scale_fill_manual(values = paleta) + 
   scale_x_continuous(breaks = unique(SampleDIC$LINHA), labels = unique(SampleDIC$LINHA),
                      expand = c(0, 0)) +
   scale_y_continuous(breaks = unique(SampleDIC$COLUNA), labels = unique(SampleDIC$COLUNA),
@@ -75,7 +76,7 @@ ggplot(DICgarlic, aes(x = DOSE, y = ALTURA)) +
   labs(
     x = "Dose (Gy)", 
     y = "Altura (cm)", 
-    title = "DIC Alho | Diagrama de Dispersão") +
+    title = "DIC Alho | Gráfico de pontos") +
   theme(
     plot.title = element_text(hjust = 0.5))
 
@@ -162,3 +163,26 @@ anova(lmDICt)
 DICgarlic$DOSE <- as.numeric(DICgarlic$DOSE)
 with(DICgarlic, 
      dic(DOSE, ALTURAt, hvar = "levene", quali = F, mcomp = "tukey", sigF = 0.05, sigT = 0.05))
+
+## ----
+## REGRESSÃO
+
+# Modelo ajustado pelos regressores cúbicos e com a retransfomação dos dados de log() para exp()
+fun2 <- function(x){
+  exp(3.9760 + 0.1193*x - 0.0407*x^2 + 0.0017*x^3)
+}
+
+# Gráfico da regressão com dados de altura originais
+ggplot(DICgarlic, aes(x=DOSE, y = ALTURA)) +
+  stat_summary(fun = mean, geom = "point", color = "red3") +
+  stat_function(fun = fun2, color = "black", size = 0.8) +
+  expand_limits(y = 0) +
+  scale_x_continuous(breaks = seq(min(DICgarlic$DOSE), max(DICgarlic$DOSE), by = 2.5)) +
+  labs(
+    x = "Dose (Gy)", 
+    y = "Altura (cm)", 
+    title = "DIC Alho | Regressão polinomial (x³)") +
+  theme(
+    plot.title = element_text(hjust = 0.5)) +
+  annotate("text", x = 10, y = 50, label = "y = exp(3.9760 + 0.1193*x - 0.0407*x³ + 0.0017*x³)", 
+           color = "blue4", size = 3.5, hjust = 0, vjust = 4)
