@@ -1,4 +1,4 @@
-## AULA 03 e 05 - Delineamentos Inteiramente Casualizados
+## AULA 03 e 05 - DIC e Comparações Múltiplas
 
 ## ----
 # Exemplo:
@@ -16,6 +16,9 @@ library(dplyr)
 library(ExpDes.pt)
 library(lawstat)
 library(RColorBrewer)
+
+## ----
+## SIMULAÇÃO DE DADOS
 
 # Seed para aleatorizações (6 primeiros n° USP)
 set.seed(2001)
@@ -61,7 +64,7 @@ DICpotato <- bind_cols(df1, df2)
 write.csv(DICpotato, file = "DIC-potato.csv")
 
 ## ----
-## CROQUI
+## ALEATORIZAÇÃO DAS PARCELAS E CROQUI
 
 # Aleatorização das parcelas experimentais
 set.seed(2001)

@@ -1,4 +1,4 @@
-## AULA 03 e 06 - DIC e Regressão Polinomial 
+## AULA 03 e 06 - DIC e Regressão Polinomial
 
 ## ---- 
 # Exemplo:
