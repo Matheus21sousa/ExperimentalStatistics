@@ -162,6 +162,6 @@ qqline(resStudDICp, col = 2)
 anova(lmDICp)
 
 # DIC
-DICpotato$Genotype <- as.numeric(DICpotato$Genotype)
+DICpotato$Genotype <- as.character(DICpotato$Genotype)
 with(DICpotato, 
      dic(Genotype, nTub, hvar = "levene", quali = T, mcomp = "tukey", sigF = 0.05, sigT = 0.05))
