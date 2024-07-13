@@ -20,21 +20,16 @@ Todos os pacotes podem ser instalados da maneira que for mais conveniente. Méto
 
 | **NOME**        | **FUNÇÃO**
 |:---             |:---
+|**here**         | Pacote utilizado para o gerenciamento de caminhos de arquivos e diretórios 
+|**dplyr**        | 
 |**readxl**       | Pacote que permite a leitura de arquivos em formato Excel
 |**ggplot2**      | Pacote para a visualização de dados e *plotagem* de gráficos
-|**ExpDes.pt**    | Pacote desenvolvido para análise de experimentos agrícolas sob diversos delineamentos
+|**RColorBrewer** | Pacote que fornece paletas de cores para coloração de "*plots*"
 |**MASS**         | Pacote utilizado para ajustes de modelos e afins - aqui se aplica para o gráfico BoxCox
-|**lawstat.**     | Pacote que fornece funções para análises estatísticas como homocedasticidade e normalidade 
-|**here**         | Pacote utilizado para o gerenciamento de caminhos de arquivos e diretórios 
-
----
-
-### ANÁLISE EXPLORATÓRIA
-### ANÁLISE DE PRESSUPOSIÇÕES
-### DIC
-### DBC
-### TESTE TUKEY 
-### REGRESSÃO
+|**lmtest**       | Pacote que fornece funções para o diagnóstico de modelos lineares
+|**lawstat**      | Pacote que fornece funções para análises estatísticas como homocedasticidade e normalidade 
+|**ExpDes.pt**    | Pacote desenvolvido para análise de experimentos agrícolas sob diversos delineamentos
+|**agricolae**    | Pacote auxiliar para a casualização de experimentos agrícolas
 
 ---
 ### Author
