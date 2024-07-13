@@ -121,7 +121,77 @@ with(PsubDBC,
      )   
 )
 
+## ----
+## TUKEY BY SOIL TILLAGE
 
+# Calcula a média dos valores de Tsolidos por preparo de solo
+meanTSsoil <- PsubDBC %>%
+  group_by(Psolo) %>%
+  summarise(meanTSsoil = mean(Tsolidos, na.rm = TRUE))
+
+# Cria um dataframe com o resultado do teste Tukey; 
+TukeySoil <- tibble(
+  Psolo = c("Grade Pesada", "Grade Leve", "Cultivo Mínimo"),
+  tTest = c("a", "ab", "c")
+)
+
+# Adiciona os grupos Tukey às médias 
+meanTSsoil <- left_join(meanTSsoil, TukeySoil, by="Psolo")
+
+# Paleta do RColorBrewer
+pTukeySoil <- brewer.pal(9, "BrBG")[4:6]
+
+# Gráfico de Barras 
+ggplot(meanTSsoil, aes(x = Psolo, y = meanTSsoil, fill = Psolo)) +
+  geom_bar(stat = "identity", show.legend = FALSE, width = 0.6) +
+  geom_text(
+    aes(label = tTest), vjust = -0.5, color = "black") +
+  scale_y_continuous(
+    limits = c(0, 25), breaks = seq(0, 25, by = 1)) +
+  coord_cartesian(ylim = c(12, 22)) +
+  scale_fill_manual(values = pTukeySoil) +
+  theme_light() +
+  labs(title = "Psub DBC Batata | Tukey p/ preparo de solo",
+       x = NULL,
+       y = "% Sólidos") +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))  
+
+## ----
+## TUKEY BY FERTILIZER
+
+# Calcula a média dos valores de Tsolidos por adubo
+meanTSfert <- PsubDBC %>%
+  group_by(Adubo) %>%
+  summarise(meanTSfert = mean(Tsolidos, na.rm = TRUE))
+
+# Cria um dataframe com o resultado do teste Tukey; 
+TukeyFert <- tibble(
+  Adubo = c("Mineral", "Organomineral", "Orgânico"),
+  tTest = c("b", "a", "c")
+)
+
+# Adiciona os grupos Tukey às médias 
+meanTSfert <- left_join(meanTSfert, TukeyFert, by="Adubo")
+
+# Paleta do RColorBrewer
+pTukeyFert <- brewer.pal(9, "BrBG")[4:6]
+
+# Gráfico de Barras 
+ggplot(meanTSfert, aes(x = Adubo, y = meanTSfert, fill = Adubo)) +
+  geom_bar(stat = "identity", show.legend = FALSE, width = 0.6) +
+  geom_text(
+    aes(label = tTest), vjust = -0.5, color = "black") +
+  scale_y_continuous(
+    limits = c(0, 25), breaks = seq(0, 25, by = 1)) +
+  coord_cartesian(ylim = c(12, 22)) +
+  scale_fill_manual(values = pTukeyFert) +
+  theme_light() +
+  labs(title = "Psub DBC Batata | Tukey p/ adubo",
+       x = NULL,
+       y = "% Sólidos") +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))  
 
 
 
